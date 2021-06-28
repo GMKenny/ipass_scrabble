@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module dawg_fsm</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>dawg_fsm</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href="../..">index</a><br><a href="file:c%3A%5Cschoolinfo%5Cjaar%201%20blok%20d%5Cipass_scrabble%5Cdawg_fsm.py">c:\schoolinfo\jaar 1 blok d\ipass_scrabble\dawg_fsm.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="dawg_fsm.html#DawgFsm">DawgFsm</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="DawgFsm">class <strong>DawgFsm</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="DawgFsm-__init__"><strong>__init__</strong></a>(self)</dt><dd><tt>This&nbsp;Class&nbsp;holds&nbsp;the&nbsp;Directed&nbsp;acyclic&nbsp;word&nbsp;graph&nbsp;finite&nbsp;state&nbsp;machine.<br>
+it&nbsp;holds&nbsp;4&nbsp;variables&nbsp;the&nbsp;start&nbsp;node,&nbsp;the&nbsp;last&nbsp;word,&nbsp;a&nbsp;list&nbsp;of&nbsp;all&nbsp;nodes&nbsp;and&nbsp;a&nbsp;list&nbsp;of&nbsp;last&nbsp;position&nbsp;nodes.<br>
+&nbsp;<br>
+It&nbsp;creates&nbsp;a&nbsp;suffix&nbsp;tree&nbsp;out&nbsp;of&nbsp;the&nbsp;given&nbsp;word&nbsp;with&nbsp;each&nbsp;node&nbsp;representing&nbsp;a&nbsp;letter.<br>
+Example:&nbsp;Kat&nbsp;and&nbsp;Kats&nbsp;contain:&nbsp;Start,&nbsp;K,&nbsp;A,&nbsp;T,&nbsp;S&nbsp;nodes,&nbsp;5&nbsp;in&nbsp;total.<br>
+minimizing:&nbsp;after&nbsp;each&nbsp;word&nbsp;that's&nbsp;added&nbsp;to&nbsp;the&nbsp;tree&nbsp;similar&nbsp;end&nbsp;nodes&nbsp;get&nbsp;merged&nbsp;into&nbsp;one&nbsp;by&nbsp;backtrack&nbsp;the&nbsp;already&nbsp;made&nbsp;tree<br>
+Example:&nbsp;Sometime&nbsp;and&nbsp;Time&nbsp;contain:&nbsp;Start,&nbsp;T,&nbsp;I,&nbsp;M,&nbsp;E&nbsp;S,&nbsp;O,&nbsp;M,&nbsp;E&nbsp;nodes,&nbsp;9&nbsp;in&nbsp;total<br>
+&nbsp;<br>
+after&nbsp;all&nbsp;the&nbsp;words&nbsp;are&nbsp;loaded&nbsp;a&nbsp;function&nbsp;can&nbsp;be&nbsp;run&nbsp;to&nbsp;clean&nbsp;the&nbsp;redundant&nbsp;connections.</tt></dd></dl>
+
+<dl><dt><a name="DawgFsm-clear_redundant"><strong>clear_redundant</strong></a>(self)</dt><dd><tt>(After&nbsp;minimizing&nbsp;nodes&nbsp;clean&nbsp;the&nbsp;list&nbsp;and&nbsp;every&nbsp;<a href="builtins.html#object">object</a>)<br>
+clear&nbsp;the&nbsp;2&nbsp;varbiles&nbsp;list&nbsp;in&nbsp;the&nbsp;class<br>
+for&nbsp;node&nbsp;in&nbsp;all&nbsp;nodes&nbsp;clear&nbsp;the&nbsp;reverse&nbsp;back&nbsp;tracking&nbsp;dict.</tt></dd></dl>
+
+<dl><dt><a name="DawgFsm-create_words"><strong>create_words</strong></a>(self, word)</dt><dd><tt>Create&nbsp;nodes&nbsp;for&nbsp;the&nbsp;given&nbsp;word.<br>
+verify&nbsp;if&nbsp;there&nbsp;was&nbsp;a&nbsp;last&nbsp;word&nbsp;before&nbsp;this&nbsp;word&nbsp;that&nbsp;contains&nbsp;the&nbsp;same&nbsp;letters.<br>
+if&nbsp;there&nbsp;are&nbsp;letter&nbsp;in&nbsp;common&nbsp;current&nbsp;node&nbsp;is&nbsp;the&nbsp;node&nbsp;of&nbsp;the&nbsp;last&nbsp;letter&nbsp;in&nbsp;common,&nbsp;else&nbsp;start&nbsp;node&nbsp;in&nbsp;the&nbsp;current&nbsp;node.<br>
+for&nbsp;every&nbsp;letter&nbsp;from&nbsp;the&nbsp;common&nbsp;letter&nbsp;create&nbsp;a&nbsp;new&nbsp;node&nbsp;and&nbsp;give&nbsp;it&nbsp;the&nbsp;current&nbsp;letter&nbsp;as&nbsp;varible.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;append&nbsp;the&nbsp;node&nbsp;to&nbsp;with&nbsp;all&nbsp;nodes.&nbsp;create&nbsp;a&nbsp;connection&nbsp;between&nbsp;the&nbsp;current&nbsp;node&nbsp;and&nbsp;the&nbsp;new&nbsp;node&nbsp;and&nbsp;from<br>
+&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;new&nbsp;node&nbsp;to&nbsp;the&nbsp;current&nbsp;node.&nbsp;append&nbsp;the&nbsp;node&nbsp;to&nbsp;a&nbsp;list&nbsp;only&nbsp;word&nbsp;nodes.&nbsp;variable&nbsp;current&nbsp;node&nbsp;is&nbsp;the&nbsp;next&nbsp;node.<br>
+set&nbsp;the&nbsp;Last&nbsp;current&nbsp;node&nbsp;as&nbsp;word.&nbsp;append&nbsp;to&nbsp;list&nbsp;the&nbsp;last&nbsp;node&nbsp;and&nbsp;corresponding&nbsp;letter.<br>
+variable&nbsp;last&nbsp;word&nbsp;is&nbsp;equal&nbsp;to&nbsp;the&nbsp;current&nbsp;word.<br>
+if&nbsp;there&nbsp;are&nbsp;letters&nbsp;in&nbsp;common&nbsp;and&nbsp;the&nbsp;length&nbsp;of&nbsp;word&nbsp;nodes&nbsp;is&nbsp;not&nbsp;equal&nbsp;to&nbsp;zero.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;start&nbsp;minimizing&nbsp;nodes<br>
+:param&nbsp;word:&nbsp;string&nbsp;of&nbsp;word</tt></dd></dl>
+
+<dl><dt><a name="DawgFsm-is_word"><strong>is_word</strong></a>(self, word)</dt><dd><tt>for&nbsp;each&nbsp;letter&nbsp;in&nbsp;word,&nbsp;try&nbsp;to&nbsp;get&nbsp;the&nbsp;next&nbsp;letter&nbsp;node&nbsp;if&nbsp;letter&nbsp;node&nbsp;exist&nbsp;return&nbsp;if&nbsp;the&nbsp;node&nbsp;is&nbsp;a&nbsp;letter.<br>
+:param&nbsp;word:<br>
+:return:</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table>
+</body></html>
