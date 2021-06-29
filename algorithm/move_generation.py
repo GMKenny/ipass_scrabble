@@ -41,7 +41,6 @@ class MoveGeneration:
 
                 if len(rack) != 7:
                     return matrix, rack
-        print("NOTHING FOUND")
         return self.board, self.rack_tiles
 
     def _move_generation(self, all_words, current_boards, row, column, dawg_dict):
@@ -93,7 +92,6 @@ class MoveGeneration:
                 else:
                     new_board = eddited_board
 
-                print("neerlegende woord", word)
                 return new_board, rack_tiles
         return self.board, self.rack_tiles
 

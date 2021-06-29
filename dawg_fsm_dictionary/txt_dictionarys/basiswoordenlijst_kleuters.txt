@@ -546,7 +546,6 @@ echtgenote
 eczeem
 eekhoorn
 een
-een paar
 eend
 eergisteren
 eerst
@@ -874,7 +873,6 @@ grot
 grote
 groter
 gul
-gum
 gymnastiek
 haak
 haakje
@@ -888,7 +886,6 @@ haastte
 haatte
 hagedis
 hagelslag
-hai
 hakte
 halen
 half

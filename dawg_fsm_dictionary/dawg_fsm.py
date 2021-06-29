@@ -142,6 +142,12 @@ class DawgFsm:
             node.clear_redundant_reversed_dict()
         self.all_nodes.clear()
 
+    def reset_all(self):
+        """ Clear all nodes and create a new start Node"""
+        self.startnode = LetterNode("StartNode")
+        self.lastword = ""
+        self.all_nodes.clear()
+        self.last_position_nodes.clear()
 
 
 

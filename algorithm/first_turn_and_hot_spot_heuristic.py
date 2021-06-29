@@ -2,7 +2,8 @@
 class FirstTurnOpenAndHotSpotBlock:
     def __init__(self):
         """Heuristic strategy First Turn Open: play the most smallest possible words with the given words,
-        to prevent bonusus and easy wordson the next turn"""
+        to prevent bonusus and easy wordson the next turn
+        Heuristic  strategy: Hot Spot Block:evade possible bonuses for another player by placing the smallest words possible"""
         self.start_position = [7, 7]
 
     def get_startposition(self):

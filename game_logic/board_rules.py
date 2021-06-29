@@ -21,7 +21,7 @@ class BoardRules:
                            "44": "DWS", "410": "DWS",
                            "51": "TLS", "55": "TLS", "59": "TLS", "513": "TLS",
                            "62": "DLS", "66": "DLS", "68": "DLS", "612": "DLS",
-                           "70": "TLS", "73": "DLS", "711": "DLS", "714": "TLS",
+                           "70": "TLS", "73": "DLS", "711": "DLS", "714": "TLS", "77": "DWS",
                            "82": "DLS", "86": "DLS", "88": "DLS", "812": "DLS",
                            "91": "TLS", "95": "TLS", "99": "TLS", "913": "TLS",
                            "104": "DWS", "1010": "DWS",
@@ -46,6 +46,13 @@ class BoardRules:
                 neighbor_tiles = self._get_neighbor_or_none(row, column)
                 self.board[row][column].set_neighbor_connections(neighbor_tiles)
                 self._set_bonus_tiles(self.board, row, column)
+
+    def reset_board(self):
+        """
+        Reset current board,
+        """
+        self.create_board()
+        self.setup_tile()
 
     def _get_neighbor_or_none(self, row, column):
         """
@@ -110,18 +117,23 @@ class BoardRules:
 
     def _verify_placement_correct(self, board):
         """
+        create varible changed
         For the given matrix, loop though it and verify if the current letter is not equal to empty.
+            increment changed by one
             if the position is the start point continue with next position.
             else get current board object neighbors and determine
                 if neighbors is the the start point, continue with next position.
                 else: return false
+        if only one position changed return False
         if all position start point are found return True
         :param board: board / Matrix
         :return: boolean True or False
         """
+        changed = 0
         for row in range(15):
             for column in range(15):
                 if board[row][column].get_validate_letter() != "":
+                    changed += 1
                     if board[row][column].get_start_point():
                         continue
                     else:
@@ -130,6 +142,8 @@ class BoardRules:
                             continue
                         else:
                             return False
+        if changed == 1:
+            return False
         return True
 
     def _recursive_search_start_point(self, main_object, neighbors):
