@@ -256,7 +256,7 @@ class BoardFrame(Frame):
 
     def verify_end_board(self):
         """Verify if end board"""
-        if self.turn_without_placement >= 20:
+        if self.turn_without_placement >= 10:
             if self.ai_points > self.player_points:
                 self.win_point_label.config(text="Computer met " + str(self.ai_points) + " punten." + "\nVolgende keer beter")
             else:
